@@ -1,8 +1,11 @@
 import React from 'react';
-import { Play, Users, Trophy, ArrowRight } from 'lucide-react';
+import { Users, Trophy, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -145,6 +148,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
+            onClick={() => navigate('/tournament')}
           >
             <Trophy className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
             Join Tournament
@@ -161,6 +165,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
+            onClick={() => navigate('/community')}
           >
             <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
             Join Community
