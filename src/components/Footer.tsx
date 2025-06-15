@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { Gamepad2, Youtube, Twitch, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-react';
+import { Gamepad2, Youtube, Twitch, Instagram, Twitter, Mail, MapPin, Phone, Moon, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
+  const [theme, setTheme] = useState('light');
+  const isDarkMode = theme === 'dark';
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
   const socialLinks = [
     { icon: Youtube, href: '#', color: 'hover:text-red-500' },
     { icon: Twitch, href: '#', color: 'hover:text-purple-500' },
@@ -48,12 +55,6 @@ const Footer = () => {
         ease: "easeOut"
       }
     }
-  };
-
-  const [theme, setTheme] = useState('light');
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
   return (
@@ -189,6 +190,31 @@ const Footer = () => {
               © 2024 GameBox Arena. All rights reserved.
             </div>
             <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-6">
+              {/* Dark Mode Toggle */}
+              <motion.button
+                onClick={toggleTheme}
+                className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors duration-300 text-gray-400 hover:text-white"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              >
+                <motion.div
+                  initial={false}
+                  animate={{ rotate: isDarkMode ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {isDarkMode ? (
+                    <Sun className="w-4 h-4" />
+                  ) : (
+                    <Moon className="w-4 h-4" />
+                  )}
+                </motion.div>
+                <span className="text-sm font-medium">
+                  {isDarkMode ? 'Light' : 'Dark'}
+                </span>
+              </motion.button>
+
               <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
                 <Link to="/partner" className="text-gray-400 hover:text-primary-blue transition-colors duration-300 text-sm sm:text-base">
                   Partner with Us
