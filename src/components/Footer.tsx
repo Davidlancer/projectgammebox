@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Gamepad2, Youtube, Twitch, Instagram, Twitter, Mail, MapPin, Phone, Moon, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Footer = () => {
-  const [theme, setTheme] = useState('light');
-  const isDarkMode = theme === 'dark';
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  };
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const socialLinks = [
     { icon: Youtube, href: '#', color: 'hover:text-red-500' },
@@ -58,7 +54,9 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-dark-900 text-white">
+    <footer className={`transition-colors duration-300 ${
+      isDarkMode ? 'bg-dark-900 text-white' : 'bg-dark-900 text-white'
+    }`}>
       <motion.div 
         className="container mx-auto px-4 sm:px-6 py-12 sm:py-16"
         variants={containerVariants}

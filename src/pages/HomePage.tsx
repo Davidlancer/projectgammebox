@@ -7,10 +7,17 @@ import Community from '../components/Community';
 import Sponsors from '../components/Sponsors';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useTheme } from '../contexts/ThemeContext';
 
 const HomePage = () => {
+  const { isDarkMode } = useTheme();
+
   return (
-    <div className="min-h-screen bg-white text-dark-900 font-sans">
+    <div className={`min-h-screen font-sans transition-colors duration-300 ${
+      isDarkMode 
+        ? 'bg-dark-900 text-white' 
+        : 'bg-white text-dark-900'
+    }`}>
       <Header />
       <Hero />
       <About />
