@@ -6,6 +6,7 @@ import PartnerPage from './pages/PartnerPage';
 import AuthPage from './pages/AuthPage';
 import CommunityPage from './pages/CommunityPage';
 import TournamentPage from './pages/TournamentPage';
+import ProfilePage from './pages/ProfilePage';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: 'tournament',
         element: <TournamentPage />,
+      },
+      {
+        path: 'profile',
+        element: <ProfilePage />,
       }
     ],
   },
