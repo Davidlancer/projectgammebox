@@ -7,11 +7,14 @@ import AuthPage from './pages/AuthPage';
 import CommunityPage from './pages/CommunityPage';
 import TournamentPage from './pages/TournamentPage';
 import ProfilePage from './pages/ProfilePage';
+import NotFoundPage from './pages/NotFoundPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <NotFoundPage />,
     children: [
       {
         index: true,
@@ -35,7 +38,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <ProfilePage />,
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       }
     ],
   },
